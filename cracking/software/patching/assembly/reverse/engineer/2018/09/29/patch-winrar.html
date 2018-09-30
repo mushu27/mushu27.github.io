@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>How to crack WinRAR | Superleip blog</title>
+<meta name="generator" content="Jekyll v3.8.3" />
+<meta property="og:title" content="How to crack WinRAR" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This tutorial describes how to crack Winrar." />
+<meta property="og:description" content="This tutorial describes how to crack Winrar." />
+<link rel="canonical" href="superleip.nl/cracking/software/patching/assembly/reverse/engineer/2018/09/29/patch-winrar.html" />
+<meta property="og:url" content="superleip.nl/cracking/software/patching/assembly/reverse/engineer/2018/09/29/patch-winrar.html" />
+<meta property="og:site_name" content="Superleip blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-09-29T08:00:00+02:00" />
+<script type="application/ld+json">
+{"description":"This tutorial describes how to crack Winrar.","@type":"BlogPosting","url":"superleip.nl/cracking/software/patching/assembly/reverse/engineer/2018/09/29/patch-winrar.html","headline":"How to crack WinRAR","dateModified":"2018-09-29T08:00:00+02:00","datePublished":"2018-09-29T08:00:00+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"superleip.nl/cracking/software/patching/assembly/reverse/engineer/2018/09/29/patch-winrar.html"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="superleip.nl/feed.xml" title="Superleip blog" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Superleip blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">How to crack WinRAR</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2018-09-29T08:00:00+02:00" itemprop="datePublished">Sep 29, 2018
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>This tutorial describes how to crack Winrar.</p>
+
+<h3 id="needed">Needed</h3>
+<ul>
+  <li>Winrar 64-bit (version 5.40 and 5.60 are tested)</li>
+  <li>x64dbg <a href="https://x64dbg.com/">site</a></li>
+  <li>Resource hacker <a href="http://www.angusj.com/resourcehacker/#download">site</a></li>
+</ul>
+
+<h3 id="note">Note</h3>
+<p>Memory addresses mentioned in this tutorial are likely to be different on your system. Only the last couple of bytes should be the same. E.g. for address <code class="highlighter-rouge">00007FF6A403AE4A</code> only check if <code class="highlighter-rouge">4A</code> is the same.</p>
+
+<h3 id="load-the-application-inside-the-debugger">Load the application inside the debugger</h3>
+<p>Run x64dbg and open the WinRAR.exe executable in x64dbg by pressing F3 to open a file. Now the application is running inside the debugger and it will pause (break) at some address, this is the entry break point. Click the right arrow located under the menu in x64dbg (or press F9) repeatedly until the text in the lower-left of the window stays at ‘Running’.</p>
+
+<p><img src="/assets/running_not_paused_any_more.PNG" alt="Winrar is running" /></p>
+
+<p>The application is now running without pausing at any break points.</p>
+
+<h3 id="finding-the-routine-that-checks-if-the-application-is-registered">Finding the routine that checks if the application is registered</h3>
+<p>When the application starts it must somehow check if the application is registered. So somewhere in the executable there <em>must</em> be a function (routine in Assembly) that checks if the application is registered. The trick is to find that routine and modify it so that the application thinks it is registered. The registration routine can be found in many ways, but usually a good place to search is for certain strings. The application window states that this is an <code class="highlighter-rouge">evaluation copy</code>:</p>
+
+<p><img src="/assets/evaluation_copy_encircled.PNG" alt="Winrar is running" /></p>
+
+<p>If you think of how this application was written, somewhere in the code a decision must be made (if/else statement) to show the string <code class="highlighter-rouge">evaluation copy</code> instead of something else like <code class="highlighter-rouge">registered</code>. We don’t know what the string will be when the application is registerd, but we know for sure that <code class="highlighter-rouge">evaluation copy</code> should not be shown.</p>
+
+<h3 id="attack-the-string">Attack the string</h3>
+<p>In x64dbg you can search for strings in the executable. You want to limit your search to only the Winrar executable and not search all the other modules (DLL’s) that are loaded by the application. Goto the <code class="highlighter-rouge">symbols</code> tab in x64dbg and double click the row that contains the winrar.exe module.</p>
+
+<p><img src="/assets/symbols_tab.PNG" alt="Winrar is running" /></p>
+
+<p>You are now in winrar.exe region of the memory shown in the <code class="highlighter-rouge">CPU</code> tab. Right click somewhere in the <code class="highlighter-rouge">CPU</code> window and goto <code class="highlighter-rouge">Search for</code> -&gt; <code class="highlighter-rouge">Current module</code> -&gt; <code class="highlighter-rouge">String references</code>. Now you are in the <code class="highlighter-rouge">References</code> tab of x64dbg. Enter <code class="highlighter-rouge">evaluation copy</code> in the <code class="highlighter-rouge">search</code> box below.</p>
+
+<p><img src="/assets/string_references.PNG" alt="Winrar is running" /></p>
+
+<p>The string cannot be found, so most likely it is not stored as consecutive characters in the executable. Windows applications can store strings in a string table ‘resource’, so we use a tool to read the string tables of the executable which is called Resource hacker.</p>
+
+<h3 id="search-for-the-string-in-string-tables">Search for the string in string tables</h3>
+<p>Run Resource hacker and open the WinRAR.exe executable. Press <code class="highlighter-rouge">ctrl+f</code> to search for a string. Enter <code class="highlighter-rouge">evaluation copy</code> and click search. The string <code class="highlighter-rouge">evaluation copy</code> appears to be in a string table with the constant <code class="highlighter-rouge">873</code> mapped to it. These constants are used in the executable to load the string mapped to it. String tables are used to save memory.</p>
+
+<p><img src="/assets/resource_hacker_string_search.PNG" alt="Winrar is running" /></p>
+
+<h3 id="find-constant-mapped-to-the-string">Find constant mapped to the string</h3>
+<p>Search for the constant <code class="highlighter-rouge">873</code> in x64dbg: right click somewhere in the <code class="highlighter-rouge">CPU</code> window and goto <code class="highlighter-rouge">Search for</code> -&gt; <code class="highlighter-rouge">Current module</code> -&gt; <code class="highlighter-rouge">Constant</code>. In the window that appears enter <code class="highlighter-rouge">873</code> in the <code class="highlighter-rouge">Signed:</code> box and click OK.</p>
+
+<p><img src="/assets/search_for_constant.PNG" alt="Winrar is running" /></p>
+
+<p>x64dbg finds one occurance of the constant located at address <code class="highlighter-rouge">00007FF6A403AE4A</code>. This address is likely to be a bit different on your system, but the last two bytes should be the same: <code class="highlighter-rouge">4A</code>.</p>
+
+<p><img src="/assets/search_constant_result.PNG" alt="Winrar is running" /></p>
+
+<p>If nothing is found, make sure you are in the winrar.exe memory region by going to the <code class="highlighter-rouge">Symbols</code> tab and double clicking winrar.exe.</p>
+
+<p>Double click the search results to go to that address location in the <code class="highlighter-rouge">CPU</code> tab. We are now in the <code class="highlighter-rouge">CPU</code> tab at the memory address that uses the constant. You see that the constant is represented as <code class="highlighter-rouge">369</code>, which is hexadecimal for <code class="highlighter-rouge">873</code>. The instruction that uses the constant is <code class="highlighter-rouge">mov ecx, 369</code> which means copy the value <code class="highlighter-rouge">369</code> to the register <code class="highlighter-rouge">ecx</code>.</p>
+
+<p><img src="/assets/cpu_tab_at_constant_369.PNG" alt="Winrar is running" /></p>
+
+<h3 id="change-the-string">Change the string</h3>
+<p>As this is the only location where <code class="highlighter-rouge">369</code> is used it is highly likely that this instruction will load the <code class="highlighter-rouge">evaluation copy</code> string from the string table. We test this by changing <code class="highlighter-rouge">369</code> to another constant from the string table. In Resource Hacker we see the constant <code class="highlighter-rouge">872</code> mapped to the string <code class="highlighter-rouge">Registration has been successfully completed</code>. Modify the assembly by double clicking on it. Change <code class="highlighter-rouge">369</code>  to <code class="highlighter-rouge">368</code>, which is <code class="highlighter-rouge">872</code> in hex. Click OK once, and then click cancel to not further modify instructions</p>
+
+<p><img src="/assets/modify_instruction_constant.PNG" alt="Winrar is running" /></p>
+
+<p>The instruction at <code class="highlighter-rouge">00007FF6A403AE4A</code> should now be <code class="highlighter-rouge">mov ecx, 368</code> as show below:</p>
+
+<p><img src="/assets/instructions_modified_368.PNG" alt="Winrar is running" /></p>
+
+<p>Press F9 or the right arrow a couple of times until the application is running without pausing at a breakpoint. The string in the titlebar has changed to <code class="highlighter-rouge">Registration has been successfully completed</code>. We have verified that the constant <code class="highlighter-rouge">369</code> in the instruction is used for the <code class="highlighter-rouge">evaluation copy</code> string.</p>
+
+<p><img src="/assets/winrar_changed_patched_string.PNG" alt="Winrar is running" /></p>
+
+<h3 id="find-the-registration-check-routine">Find the registration-check routine</h3>
+<p>In WinRAR goto help -&gt; about WinRAR. It still mentions the <code class="highlighter-rouge">40 days trial copy</code>. We have only patched the executable to show another string. Logically, the string <code class="highlighter-rouge">evaluation copy</code> will be shown when the registration routine has decided that the application is not registered.</p>
+
+<p>Have a look at the instructions surrounding the instruction where the constant <code class="highlighter-rouge">369</code> is used. More specifically, trace back which instructions preceded the instruction at <code class="highlighter-rouge">00007FF6A403AE4A</code>, how did we get there? The only way that instruction could have been executed is by coming from address <code class="highlighter-rouge">00007FF7B91EAE20</code>, which is also made clear by the grey dashed arrow on the left of the addresses.</p>
+
+<p><img src="/assets/grey_arrow_x64dbg.PNG" alt="Winrar is running" /></p>
+
+<p>At <code class="highlighter-rouge">00007FF7B91EAE20</code> a conditional jump is done, <code class="highlighter-rouge">ja</code>, which means <em>jump above</em>. This means the jump will be taken when the zero flag <code class="highlighter-rouge">ZF</code> and the carry flag <code class="highlighter-rouge">CF</code> are set. These flags are in turn set by the instruction before that at <code class="highlighter-rouge">00007FF7B91EAE1D</code>. There, the instruction <code class="highlighter-rouge">cmp eax, 13</code> will compare the <code class="highlighter-rouge">eax</code> register with the value <code class="highlighter-rouge">13</code> (in hex), and set the <code class="highlighter-rouge">ZF</code> if <code class="highlighter-rouge">eax &lt;= 0x13</code>. Set a breakpoint at <code class="highlighter-rouge">00007FF7B91EAE20</code> by highlighting the row and pressing F2. Now restart the application by pressing ctrl+F2. Press F9 until x64dbg breaks at the breakpoint you just set at <code class="highlighter-rouge">00007FF7B91EAE20</code>. The value of <code class="highlighter-rouge">eax</code> are the 32 least significant bits of the <code class="highlighter-rouge">rax</code> register (<a href="https://i.imgur.com/5roqw7y.png">image</a>), which can be seen on the top-right window in x64dbg. The value of <code class="highlighter-rouge">eax</code> is <code class="highlighter-rouge">FFFFFFEE</code>.</p>
+
+<p><img src="/assets/RAX_register.PNG" alt="Winrar is running" /></p>
+
+<p>This means the instruction you are at now, <code class="highlighter-rouge">cmp eax, 13</code>, will result in a value that is  higher than 0. This results in the <code class="highlighter-rouge">CF</code> flag not be set and the jump at <code class="highlighter-rouge">ja</code> is taken. We modify the <code class="highlighter-rouge">eax</code> register so that it contains a value &lt;= <code class="highlighter-rouge">13</code> and the <code class="highlighter-rouge">ja</code> jump is not taken. Double click on the <code class="highlighter-rouge">rax</code> register, and enter the value <code class="highlighter-rouge">13</code> (or anything lower than 13).</p>
+
+<p><img src="/assets/edit_rax_register.PNG" alt="Winrar is running" /></p>
+
+<p>Press OK and press F9 to continue execution. The string in the title bar has now changed to <code class="highlighter-rouge">only xx days left to buy a license</code>. Apparently this is not the registration flow we are looking for.</p>
+
+<p>Trace back a bit trough the instructions in x64dbg. We are looking for jumps that will change the instruction flow to show another string in the title bar. At <code class="highlighter-rouge">00007FF70E2FAE0E</code> there is a jump, <code class="highlighter-rouge">jne</code>, that jumps past both the instructions <code class="highlighter-rouge">mov ecx, 368</code> and <code class="highlighter-rouge">mov eax, 369</code>. <code class="highlighter-rouge">jne</code> stands for <em>jump not equal</em> and takes the jump when <code class="highlighter-rouge">ZF == 0</code>. Right now the jump is not taken because we will end up in the instructions right after this <code class="highlighter-rouge">jne</code>. To see what will happen when the jump <em>is</em> taken, we change <code class="highlighter-rouge">jne</code> to <code class="highlighter-rouge">jmp</code>, so it will unconditionally jump. Set a break point at <code class="highlighter-rouge">00007FF70E2FAE0E</code> and restart the application. Press F9 until the application pauses at the break point we just set. Press space to modify the row and change <code class="highlighter-rouge">jne</code> to <code class="highlighter-rouge">jmp</code>.</p>
+
+<p><img src="/assets/modify_jne_to_jmp.PNG" alt="Winrar is running" /></p>
+
+<p>Press F9 again until the application runs. No string is shown any more in the title bar, this looks like the registration flow.</p>
+
+<p><img src="/assets/no_evaluation_string_title_bar.PNG" alt="Winrar is running" /></p>
+
+<p>So when the <code class="highlighter-rouge">jne</code> is taken we get into the registration flow. The instruction at <code class="highlighter-rouge">00007FF70E2FAE07</code> that decides if the <code class="highlighter-rouge">jne</code> is taken, <code class="highlighter-rouge">cmp byte ptr ds:[7FF7B92848E4],dil</code>, compares the <em>byte</em> located at memory address <code class="highlighter-rouge">7FF7B92848E4</code> with the contents of the <code class="highlighter-rouge">dil</code> register. <code class="highlighter-rouge">dil</code> is the least significant byte of the <code class="highlighter-rouge">rdi</code> register.</p>
+
+<p>We want to know what value is at memory location <code class="highlighter-rouge">7FF7B92848E4</code> and in <code class="highlighter-rouge">dil</code> when the application breaks at <code class="highlighter-rouge">00007FF70E2FAE07</code>, because this value decides whether we come in the registration flow or in the ‘evaluation’ flow. Set a break point at <code class="highlighter-rouge">00007FF70E2FAE07</code>, restart the application with ctrl+F2 and press F9 until you pause at the break point. Right click on the row where the <code class="highlighter-rouge">cmp</code> instruction is and goto <code class="highlighter-rouge">Follow in Dump</code> -&gt; <code class="highlighter-rouge">Constant: 7FF7B92848E4</code>.</p>
+
+<p><img src="/assets/follow_in_dump.png" alt="Winrar is running" /></p>
+
+<p>The value of <code class="highlighter-rouge">7FF7B92848E4</code> and <code class="highlighter-rouge">dil</code> is both <code class="highlighter-rouge">00</code>. This means that the result of <code class="highlighter-rouge">cmp byte ptr ds:[7FF7B92848E4],dil</code> will be <code class="highlighter-rouge">0</code> and ZF will be set. <code class="highlighter-rouge">jne</code> is then not taken an we will enter the flow where the <code class="highlighter-rouge">evaluation copy</code> string is set.</p>
+
+<p>We could trace back where <code class="highlighter-rouge">dil</code> is set or we can check whether the byte located at <code class="highlighter-rouge">7FF7B92848E4</code> is written to at some point. We do the latter first because this can be easily checked by setting a <em>hardware write</em> breakpoint at <code class="highlighter-rouge">7FF7B92848E4</code>. Right click on the <code class="highlighter-rouge">00</code> byte and goto <code class="highlighter-rouge">Breakpoint</code> -&gt; <code class="highlighter-rouge">Hardware, Write</code> -&gt; <code class="highlighter-rouge">Byte</code>.</p>
+
+<p><img src="/assets/set_write_breakpoint.png" alt="Winrar is running" /></p>
+
+<p>This type of breakpoint will break when a value is written to that memory address. Now restart the application (ctrl+F2). Press F9 until you arrive the hardware breakpoint you just set.</p>
+
+<p><img src="/assets/break_at_hw_breakpoint.PNG" alt="Winrar is running" /></p>
+
+<p>x64 will break at <code class="highlighter-rouge">00007FF6F0E78FB1</code>, one instruction after the byte was written. So the byte was written at <code class="highlighter-rouge">00007FF6F0E78FAB</code>, with the instruction <code class="highlighter-rouge">mov byte ptr ds:[7FF6F0F148E4],al</code>. We trace back again where <code class="highlighter-rouge">al</code> is modified. <code class="highlighter-rouge">al</code> is the the least significant byte of the <code class="highlighter-rouge">rax</code> register, which is used to hold return values of routines (functions). The instruction before this one at <code class="highlighter-rouge">00007FF6F0E78FA6</code> is a routine call. After exiting a routine call the return value is stored in <code class="highlighter-rouge">rax</code>. It is highly likely that the <code class="highlighter-rouge">rax</code> register is modified in there.</p>
+
+<p>We have a look inside that routine by right clicking on the row and goto <code class="highlighter-rouge">Follow in Disassembler</code> -&gt; click on the address.</p>
+
+<p><img src="/assets/registration_check_routine.PNG" alt="Winrar is running" /></p>
+
+<p>We are now at the beginning of the routine that is very likely to modify the <code class="highlighter-rouge">al</code> (<code class="highlighter-rouge">rax</code>) register that eventually will decide if <code class="highlighter-rouge">evaluation copy</code> or no string is shown in the title bar.</p>
+
+<p>We back trace from the end of the routine, which can be found by the <code class="highlighter-rouge">ret</code> instruction. We search for the instructions that modify the <code class="highlighter-rouge">rax</code> register.</p>
+
+<p>Analysing the routine, at <code class="highlighter-rouge">00007FF70E2F80D4</code> the <code class="highlighter-rouge">al</code> register is specifically modified to contain the value <code class="highlighter-rouge">1</code>. This does not look like a coincidence. We test what execution path will be taken around this instruction <code class="highlighter-rouge">mov al,1</code> by setting a break point at the beginning of the routine at <code class="highlighter-rouge">00007FF70E2F80A8</code>. Press F9 until we arrive at the break point and then press F8 (step over) until <code class="highlighter-rouge">00007FF70E2F80D2</code>. Then watch what happens when we press F9 again. <code class="highlighter-rouge">je</code> at <code class="highlighter-rouge">00007FF70E2F80D2</code> is taken and <code class="highlighter-rouge">mov al,1</code> is not executed.</p>
+
+<p><img src="/assets/registration_check_step_over_mov_al.PNG" alt="Winrar is running" /></p>
+
+<p>We check what happens when <code class="highlighter-rouge">je</code> is not taken by changing the <code class="highlighter-rouge">je</code> with <code class="highlighter-rouge">nop</code> instructions (we could also invert <code class="highlighter-rouge">je</code> to <code class="highlighter-rouge">jne</code>). Break at the beginning of the routine. Click on the row with <code class="highlighter-rouge">je</code> and press space, enter <code class="highlighter-rouge">nop</code> and tick “keep size” and “fill with NOP’s”</p>
+
+<p><img src="/assets/filled_with_nops.PNG" alt="Winrar is running" /></p>
+
+<p><code class="highlighter-rouge">nop</code> means no-op and does not execute anything. So now the <code class="highlighter-rouge">je</code> has basically been erased and execution will continue at <code class="highlighter-rouge">00007FF70E2F80D4</code>. Press F9 until the application runs. The <code class="highlighter-rouge">evaluation copy</code> string is not in the title bar any more and the “about” window also shows that the application is registered to “” (empty). The application is now cracked.</p>
+
+<h3 id="wrap-up">Wrap up</h3>
+
+<p>We found the registration routine by tracing back from the <code class="highlighter-rouge">evaluation copy</code> string. Then we patched this routine by removing the <code class="highlighter-rouge">je</code> instruction that was causing the application to execute in the non-registered state.</p>
+
+
+  </div><a class="u-url" href="/cracking/software/patching/assembly/reverse/engineer/2018/09/29/patch-winrar.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Superleip blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Superleip blog</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Blog writings about tech, programming, reverse engineering, machine learning </p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

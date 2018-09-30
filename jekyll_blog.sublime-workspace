@@ -1,0 +1,525 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"word",
+				"word_indices"
+			],
+			[
+				"wor",
+				"word_indices"
+			],
+			[
+				"voc",
+				"vocabList"
+			],
+			[
+				"vo",
+				"vocabList"
+			],
+			[
+				"min",
+				"min_error"
+			],
+			[
+				"C",
+				"C_min"
+			],
+			[
+				"X",
+				"Xval"
+			],
+			[
+				"sv",
+				"svmPredict"
+			],
+			[
+				"lam",
+				"lambda_vec"
+			],
+			[
+				"la",
+				"lambda"
+			],
+			[
+				"erro",
+				"error_val"
+			],
+			[
+				"J_",
+				"J_train"
+			],
+			[
+				"Y",
+				"Y_subset"
+			],
+			[
+				"li",
+				"linearRegCostFunction"
+			],
+			[
+				"cost",
+				"cost_gradient"
+			],
+			[
+				"Thet",
+				"Theta1"
+			],
+			[
+				"the",
+				"Theta2_grad"
+			],
+			[
+				"Th",
+				"Theta2_grad"
+			],
+			[
+				"The",
+				"Theta1_grad"
+			],
+			[
+				"DE",
+				"Delta1"
+			],
+			[
+				"z",
+				"z2"
+			],
+			[
+				"si",
+				"sigmoidGradient"
+			],
+			[
+				"sig",
+				"sigmoid"
+			],
+			[
+				"a_",
+				"a_1"
+			],
+			[
+				"a",
+				"a_3"
+			],
+			[
+				"del",
+				"delta_3"
+			],
+			[
+				"in",
+				"input_layer_size"
+			],
+			[
+				"hi",
+				"hidden_layer_size"
+			],
+			[
+				"D",
+				"Delta_1"
+			],
+			[
+				"De",
+				"Delta_2"
+			],
+			[
+				"de",
+				"delta_2"
+			],
+			[
+				"delta",
+				"delta_2"
+			],
+			[
+				"d",
+				"delta_2"
+			],
+			[
+				"T",
+				"Theta2"
+			],
+			[
+				"J",
+				"Jtheta"
+			],
+			[
+				"sum",
+				"summed_error"
+			],
+			[
+				"out",
+				"output_layer"
+			],
+			[
+				"numb",
+				"num_labels"
+			],
+			[
+				"all",
+				"all_theta"
+			],
+			[
+				"regu",
+				"regularization_term"
+			],
+			[
+				"re",
+				"regularization_term"
+			],
+			[
+				"su",
+				"summed_error"
+			],
+			[
+				"di",
+				"difference"
+			],
+			[
+				"get",
+				"getGoat"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": ".gitignore",
+			"settings":
+			{
+				"buffer_size": 55,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "_posts/2018-07-23-raspberry-pi-night-vision-motion-detection.md",
+			"settings":
+			{
+				"buffer_size": 2703,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 154.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 497.0
+	},
+	"console":
+	{
+		"height": 136.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/john/hdv/pers/blog/jekyll/blog",
+		"/home/john/hdv/pers/blog/jekyll/blog/_posts",
+		"/home/john/hdv/pers/blog/jekyll/blog/_site"
+	],
+	"file_history":
+	[
+		"/home/john/.config/sublime-text-3/Packages/User/Jekyll.sublime-settings",
+		"/home/john/.config/sublime-text-3/Packages/Jekyll/Jekyll.sublime-settings",
+		"/home/john/hdv/pers/blog/jekyll/blog/_config.yml",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex6/ex6/gaussianKernel.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex6/ex6/processEmail.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex6/ex6/dataset3Params.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex6/ex6/svmTrain.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex6/ex6/svmPredict.m",
+		"/home/john/hdv/project/linux-ing-laptop/alles_voor_installeren_linux.txt",
+		"/home/john/hdv/retrogaming/RetroLAN 2.vbox",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex5/ex5/ex5.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex5/ex5/validationCurve.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex5/ex5/learningCurve.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex5/ex5/trainLinearReg.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex5/ex5/testCase_linearRegCostFunction_2.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex5/ex5/testCase_linearRegCostFunction.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex5/ex5/linearRegCostFunction.m",
+		"/home/john/hdv/doc/notes.txt",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex4/ex4/nnCostFunction.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex4/ex4/predict.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex3/ex3/predict.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex3/ex3/oneVsAll.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex4/ex4/sigmoidGradient.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex4/ex4/ex4.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex4/ex4/testcase1.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex4/ex4/computeNumericalGradient.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex4/ex4/randInitializeWeights.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex3/ex3/lrCostFunction.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex3/ex3/ex3.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex3/ex3/predictOneVsAll.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex3/ex3/ex3_nn.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex2/ex2/costFunction.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex3/ex3/displayData.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex2/ex2/plotDecisionBoundary.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex2/ex2/costFunctionReg.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex2/ex2/ex2_reg.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex2/ex2/predict.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex2/ex2/ex2.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex2/ex2/plotData.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex1/ex1/computeCost.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex1/ex1/gradientDescent.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex2/ex2/sigmoid.m",
+		"/home/john/tmp/aap.js",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex1/ex1/gradientDescentMulti.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex1/ex1/ex1_multi.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex1/ex1/computeCostMulti.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex1/ex1/featureNormalize.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex1/ex1.pdf",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex1/ex1/plotData.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex1/ex1/ex1.m",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex1/ex1/ex1data2.txt",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex1/ex1/ex1data1.txt",
+		"/home/john/hdv/pers/MLcourse/assignments/machine-learning-ex1/ex1/normalEqn.m",
+		"/home/john/hdv/pers/MLcourse/assignments/week2/machine-learning-ex1/ex1/warmUpExercise.m",
+		"/home/john/hdv/pers/MLcourse/assignments/week2/machine-learning-ex1/ex1/plotData.m",
+		"/home/john/hdv/pers/MLcourse/assignments/week2/machine-learning-ex1/ex1/computeCost.m",
+		"/home/john/hdv/pers/MLcourse/assignments/week2/machine-learning-ex1/ex1/gradientDescent.m",
+		"/home/john/hdv/project/learn-hacking/code/learnhacking/findxss/views.py",
+		"/home/john/hdv/project/learn-hacking/code/learnhacking/findxss/urls.py",
+		"/home/john/hdv/project/learn-hacking/code/learnxss.sublime-project",
+		"/home/john/hdv/project/learn-hacking/code/learnhacking/findsqli/views.py",
+		"/home/john/hdv/project/learn-hacking/code/learnhacking/findsqli/models.py",
+		"/home/john/hdv/project/learn-hacking/code/learnhacking/learnhacking/urls.py",
+		"/home/john/hdv/project/learn-hacking/code/learnhacking/learnhacking/wsgi.py",
+		"/home/john/hdv/project/learn-hacking/code/learnhacking/findxss/apps.py",
+		"/home/john/hdv/project/learn-hacking/code/learnhacking/learnhacking/settings.py",
+		"/home/john/hdv/project/learn-hacking/code/learnhacking/manage.py",
+		"/home/john/hdv/project/learn-hacking/code/learnxss/learnxss/settings.py",
+		"/home/john/hdv/project/learn-hacking/code/learnxss/findxss/urls.py",
+		"/home/john/hdv/project/learn-hacking/code/learnxss/findxss/views.py",
+		"/home/john/hdv/project/learn-hacking/code/learnxss/db.sqlite3",
+		"/home/john/hdv/project/gincassodebtorapi/compare/NL31INGB0005877468_002_001.xml",
+		"/home/john/hdv/project/gincassodebtorapi/compare/NL31INGB0005877468_001_001.xml",
+		"/home/john/.hermes/hermes-config.xml",
+		"/home/john/.hermes/hermes-config_complete.xml",
+		"/tmp/mozilla_john0/NL31INGB0005877468_001_001.xml",
+		"/tmp/mozilla_john0/NL31INGB0005877468_002_002.xml",
+		"/home/john/hdv/project/gincassodebtorapi/wsdl/GCB_SEPA_DirectDebitCollection_002_GetDirectDebitCollectionList_002.wsdl",
+		"/home/john/hdv/dev/source/c/test/test.c"
+	],
+	"find":
+	{
+		"height": 38.0
+	},
+	"find_in_files":
+	{
+		"height": 98.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"raspeberry",
+			"Because"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"folders":
+	[
+		{
+			"path": "/home/john/hdv/pers/blog/jekyll/blog"
+		}
+	],
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": ".gitignore",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 55,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								55,
+								55
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Git Formats/Git Ignore.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "_posts/2018-07-23-raspberry-pi-night-vision-motion-detection.md",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2703,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								770,
+								770
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 24.0
+	},
+	"input":
+	{
+		"height": 36.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 194.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "",
+	"replace":
+	{
+		"height": 44.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 181.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
